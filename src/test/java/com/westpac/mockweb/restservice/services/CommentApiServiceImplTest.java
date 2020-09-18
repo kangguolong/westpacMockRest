@@ -56,7 +56,7 @@ class CommentApiServiceImplTest {
         mockWebServer.enqueue(mockResponse);
 
         //when
-        Flux<Comment> commentFlux = commentApiService.getCommentsByPostId(Mono.just(anyInt()));
+        Flux<Comment> commentFlux = commentApiService.getCommentsByPostId(Mono.just(1));
 
         //then
         StepVerifier.create(commentFlux)

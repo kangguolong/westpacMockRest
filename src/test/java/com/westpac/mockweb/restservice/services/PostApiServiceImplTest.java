@@ -55,7 +55,7 @@ class PostApiServiceImplTest {
         mockWebServer.enqueue(mockResponse);
 
         //when
-        Flux<Post> postFlux = postApiService.getPostsByUserId(Mono.just(anyInt()));
+        Flux<Post> postFlux = postApiService.getPostsByUserId(Mono.just(1));
 
         //then
         StepVerifier.create(postFlux)
