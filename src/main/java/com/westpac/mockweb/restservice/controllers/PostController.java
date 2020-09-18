@@ -23,7 +23,7 @@ public class PostController {
         return postApiService.getPosts();
     }
 
-    @GetMapping("/{userId}")
+    @GetMapping("/byUserId/{userId}")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Post> getPostsByUserId(@PathVariable Integer userId) {
         return postApiService.getPostsByUserId(Mono.just(userId));

@@ -17,7 +17,7 @@ public class CommentController {
         this.commentApiService = commentApiService;
     }
 
-    @GetMapping("/{postId}")
+    @GetMapping("/byPostId/{postId}")
     @ResponseStatus(HttpStatus.OK)
     public Flux<Comment> getCommentsByPostId(@PathVariable Integer postId) {
         return commentApiService.getCommentsByPostId(Mono.just(postId));
