@@ -1,6 +1,7 @@
 ## Westpac Rest Demo
 
 [![CircleCI](https://circleci.com/gh/kangguolong/westpacMockRest.svg?style=svg)](https://circleci.com/gh/kangguolong/westpacMockRest)
+[![codecov](https://codecov.io/gh/kangguolong/westpacMockRest/branch/develop/graph/badge.svg)](https://codecov.io/gh/kangguolong/westpacMockRest)
 
 This repository provides the modern practice of building a web application using Spring framework (Springboot).
 
