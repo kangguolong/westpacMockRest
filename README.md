@@ -13,7 +13,7 @@ This repository provides the modern practice of building a web application using
 * Junit 5 (Mockito integrated)
 * MockWebServer for testing WebClient
 * WebTestClient for testing Reactive program (Rest API)
-* CircleCI (CI)
+* CircleCI (CI) + Codecov
 * Spring openAPI-webflux integration (Swagger)
 * Docker (Dockerfile)
 
