@@ -11,18 +11,21 @@ import reactor.core.publisher.Mono;
 @Service
 public class CommentApiServiceImpl implements CommentApiService{
 
-    private final String API_URL;
+    private final WebClient webClient;
     private final static String COMMENT_ENDPOINT = "comments";
 
     public CommentApiServiceImpl(@Value("${api.url}") String apiUrl) {
-        this.API_URL = apiUrl;
+        this.webClient = WebClient.create(apiUrl);
     }
 
     @Override
     public Flux<Comment> getCommentsByPostId(Mono<Integer> postId) {
-        return WebClient.create(API_URL + COMMENT_ENDPOINT)
+        return webClient
                 .get()
-                .uri(uriBuilder -> uriBuilder.queryParam("postId", postId.block()).build())
+                .uri(COMMENT_ENDPOINT,
+                        uriBuilder ->
+                                uriBuilder.queryParam("postId",
+                                        postId.block()).build())
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(Comment.class);

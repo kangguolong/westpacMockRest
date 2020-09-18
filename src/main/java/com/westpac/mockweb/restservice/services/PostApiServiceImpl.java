@@ -11,18 +11,20 @@ import reactor.core.publisher.Mono;
 @Service
 public class PostApiServiceImpl implements PostApiService{
 
-    private final String API_URL;
+    private final WebClient webClient;
     private final static String POST_ENDPOINT = "posts";
 
     public PostApiServiceImpl(@Value("${api.url}") String apiUrl) {
-        this.API_URL = apiUrl;
+        this.webClient = WebClient.create(apiUrl);
     }
 
     @Override
     public Flux<Post> getPostsByUserId(Mono<Integer> userId) {
-        return WebClient.create(API_URL + POST_ENDPOINT)
+        return webClient
                 .get()
-                .uri(uriBuilder -> uriBuilder.queryParam("userId", userId.block()).build())
+                .uri(POST_ENDPOINT, uriBuilder ->
+                        uriBuilder.queryParam("userId",
+                                userId.block()).build())
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(Post.class);
@@ -30,8 +32,9 @@ public class PostApiServiceImpl implements PostApiService{
 
     @Override
     public Flux<Post> getPosts() {
-        return WebClient.create(API_URL + POST_ENDPOINT)
+        return webClient
                 .get()
+                .uri(POST_ENDPOINT)
                 .accept(MediaType.APPLICATION_JSON)
                 .retrieve()
                 .bodyToFlux(Post.class);
