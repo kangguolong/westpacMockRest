@@ -31,7 +31,7 @@ class PostControllerTest {
         doReturn(mockPosts).when(postApiService).getPosts();
 
         webTestClient.get()
-                .uri("/posts")
+                .uri("/api/v1/posts")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(Post.class)
@@ -45,7 +45,7 @@ class PostControllerTest {
         doReturn(mockPosts).when(postApiService).getPostsByUserId(Mono.just(anyInt()));
 
         webTestClient.get()
-                .uri("/posts/byUserId/1")
+                .uri("/api/v1/posts/byUserId/1")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(Post.class)

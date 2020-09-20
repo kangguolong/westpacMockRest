@@ -31,7 +31,7 @@ class CommentControllerTest {
         doReturn(commentFlux).when(commentApiService).getCommentsByPostId(Mono.just(anyInt()));
 
         webTestClient.get()
-                .uri("/comments/byPostId/1")
+                .uri("/api/v1/comments/byPostId/1")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(Comment.class)

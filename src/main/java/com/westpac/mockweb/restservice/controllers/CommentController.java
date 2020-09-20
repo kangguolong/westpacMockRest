@@ -9,7 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @RestController
-@RequestMapping("/comments")
+@RequestMapping("/api/v1/comments")
 public class CommentController {
 
     private final CommentApiService commentApiService;
